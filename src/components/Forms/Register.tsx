@@ -10,7 +10,6 @@ export const RegisterForm: React.FC = () => {
     });
 
     const submitForm = (values: RegisterFormInterface) => {
-        console.log(values);
         mutate(values);
     };
 
@@ -49,38 +48,22 @@ export const RegisterForm: React.FC = () => {
                     <div className={submitCount ? (errors.fullName ? 'has-error' : 'has-success') : ''}>
                         <label htmlFor="fullName">First Name </label>
                         <Field name="fullName" type="text" id="fullName" placeholder="Enter Full Name" className="form-input" />
-                        {submitCount ? errors.fullName ? <div className="text-danger mt-1">{errors.fullName}</div> : '' : <div className="text-danger mt-1">*Required</div>}
+                        {submitCount ? errors.fullName ? <div className="text-danger mt-1">{errors.fullName}</div> : '' : ''}
                     </div>
                     <div className={submitCount ? (errors.username ? 'has-error' : 'has-success') : ''}>
                         <label htmlFor="username">Username</label>
                         <Field name="username" type="text" id="username" placeholder="Enter username" className="form-input" />
-                        {touched ? (
-                            errors.username ? (
-                                <div className="text-danger mt-1">{errors.username}</div>
-                            ) : (
-                                <div className="text-[#1abc9c] mt-1">Looks Good!</div>
-                            )
-                        ) : (
-                            <div className="text-danger mt-1">*Required</div>
-                        )}
+                        {submitCount ? errors.username ? <div className="text-danger mt-1">{errors.username}</div> : <div className="text-[#1abc9c] mt-1">Looks Good!</div> : ''}
                     </div>
                     <div className={submitCount ? (errors.email ? 'has-error' : 'has-success') : ''}>
                         <label htmlFor="email">Email</label>
                         <Field name="email" type="text" id="email" placeholder="Enter Email" className="form-input" />
-                        {touched ? errors.email ? <div className="text-danger mt-1">{errors.email}</div> : '' : <div className="text-danger mt-1">*Required</div>}
+                        {submitCount ? errors.email ? <div className="text-danger mt-1">{errors.email}</div> : '' : ''}
                     </div>
                     <div className={submitCount ? (errors.password ? 'has-error' : 'has-success') : ''}>
                         <label htmlFor="password">Password</label>
-                        <Field name="password" type="text" id="password" placeholder="Enter Password" className="form-input" />
-                        {touched ? (
-                            errors.password ? (
-                                <div className="text-danger mt-1">{errors.password}</div>
-                            ) : (
-                                <div className="text-[#1abc9c] mt-1">Strong Password!</div>
-                            )
-                        ) : (
-                            <div className="text-danger mt-1">*Required</div>
-                        )}
+                        <Field name="password" type="password" id="password" placeholder="Enter Password" className="form-input" />
+                        {submitCount ? errors.password ? <div className="text-danger mt-1">{errors.password}</div> : <div className="text-[#1abc9c] mt-1">Strong Password!</div> : ''}
                     </div>
                     <button type="submit" className="btn btn-primary w-full" disabled={isLoading}>
                         {isLoading ? 'Loading...' : 'SIGN IN'}

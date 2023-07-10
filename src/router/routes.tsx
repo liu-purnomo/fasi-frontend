@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         loader: () => {
-            if (localStorage.getItem('access_token')) {
+            if (localStorage.getItem('token')) {
                 throw redirect('/dashboard');
             }
             return null;
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         loader: () => {
-            if (!localStorage.getItem('access_token')) {
+            if (!localStorage.getItem('token')) {
                 Alert.default('error', 'Oops...', 'Please login first!');
                 throw redirect('/login');
             }
